@@ -279,15 +279,15 @@ the structure and function of the gene co-expression network, while
 bridging genes may facilitate communication between different biological
 processes.
 
-Genes with high node strength are considered hub genes, while genes with
-high bridge centrality connect different gene groups. Many genes in
-group A (carbohydrate metabolism) are identified as hub genes,
-indicating their central role in the network. On the other hand, genes
-in group B (cellular redox reactions) tend to have lower connectivity,
-suggesting they may function more independently within the network.
-Confirming the exploratory analyses, genes *VAB31*, *TRX2*, *SOD1* have
-low values on both metrics, indicating they are less connected and more
-isolated in the network.
+Genes with high node strength (Opsahl et al. 2010) are considered hub
+genes, while genes with high bridge centrality (Jones et al. 2021)
+connect different gene groups. Many genes in group A (carbohydrate
+metabolism) are identified as hub genes, indicating their central role
+in the network. On the other hand, genes in group B (cellular redox
+reactions) tend to have lower connectivity, suggesting they may function
+more independently within the network. Confirming the exploratory
+analyses, genes *VAB31*, *TRX2*, *SOD1* have low values on both metrics,
+indicating they are less connected and more isolated in the network.
 
 ``` r
 # Top 10 hub genes by node strength
@@ -667,3 +667,21 @@ Least Connected Genes in Stress
 | SSA4  |            22 | C     |
 
 </div>
+
+## References
+
+Gasch, Audrey P., et al. “Genomic expression programs in the response of
+yeast cells to environmental changes.” *Molecular biology of the cell*
+11.12 (2000): 4241-4257.
+
+Jones, Payton J., Ruofan Ma, and Richard J. McNally. “Bridge centrality:
+a network approach to understanding comorbidity.” Multivariate
+behavioral research 56.2 (2021): 353-367.
+
+Kovács, Solt, et al. “Graphical elastic net and target matrices: Fast
+algorithms and software for sparse precision matrix estimation.” *arXiv*
+preprint arXiv:2101.02148 (2021).
+
+Opsahl, Tore, Filip Agneessens, and John Skvoretz. “Node centrality in
+weighted networks: Generalizing degree and shortest paths.” Social
+networks 32.3 (2010): 245-251.
