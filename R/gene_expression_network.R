@@ -286,3 +286,4 @@ least_table_s <- data.frame(
   Group = V(gene_graph_s)$Group[match(least_connected_genes_s, V(gene_graph_s)$name)]
 )
 colnames(least_table_s) <- c("Node Strength", "Group")
+

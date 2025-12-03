@@ -212,7 +212,7 @@ ggraph(gene_graph, layout = "fr") +
 
 We will now analyze the network to identify hub genes, which are highly connected nodes in the network, and bridging genes, which connect to different gene groups. Hub genes may play crucial roles in maintaining the structure and function of the gene co-expression network, while bridging genes may facilitate communication between different biological processes. 
 
-Genes with high node strength are considered hub genes, while genes with high bridge centrality connect different gene groups. 
+Genes with high node strength (Opsahl et al. 2010) are considered hub genes, while genes with high bridge centrality (Jones et al. 2021) connect different gene groups. 
 Many genes in group A (carbohydrate metabolism) are identified as hub genes, indicating their central role in the network. On the other hand, genes in group B (cellular redox reactions) tend to have lower connectivity, suggesting they may function more independently within the network.
 Confirming the exploratory analyses, genes _VAB31_, _TRX2_, _SOD1_ have low values on both metrics, indicating they are less connected and more isolated in the network.
 
@@ -440,3 +440,14 @@ cat('<h4>Least Connected Genes in Stress</h4>')
 knitr::kable(least_table_s, type="html")
 cat('</div>')
 ```
+
+## References
+
+Gasch, Audrey P., et al. "Genomic expression programs in the response of yeast cells to environmental changes." _Molecular biology of the cell_ 11.12 (2000): 4241-4257.
+
+Jones, Payton J., Ruofan Ma, and Richard J. McNally. "Bridge centrality: a network approach to understanding comorbidity." Multivariate behavioral research 56.2 (2021): 353-367.
+
+Kovács, Solt, et al. "Graphical elastic net and target matrices: Fast algorithms and software for sparse precision matrix estimation." _arXiv_ preprint arXiv:2101.02148 (2021).
+
+Opsahl, Tore, Filip Agneessens, and John Skvoretz. "Node centrality in weighted networks: Generalizing degree and shortest paths." Social networks 32.3 (2010): 245-251.
+
