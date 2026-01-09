@@ -740,7 +740,7 @@ ggraph(gene_graph_d, layout = coords) +
   theme_void() +
   guides(edge_alpha = "none", size = "none", color = guide_legend(title = "Gene Group", override.aes = list(size = 3))) +
   ggtitle("Differential Gene Co-expression Network (Stress - Control)") +
-  theme(plot.title = element_text(hjust = 0.5, size = 20, face = "bold.italic"))
+  theme(plot.title = element_text(hjust = 0.5, size = 10, face = "bold.italic"))
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
