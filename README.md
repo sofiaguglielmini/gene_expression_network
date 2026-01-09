@@ -29,9 +29,10 @@ loaded from the `gaschYHS` package available on Bioconductor.
 ``` r
 # Load necessary libraries
 
-# library(Biobase)
-# BioCManager::install("gaschYHS")
-# BioCManager::install("impute")
+# library(BiocManager)
+# BiocManager::install("gaschYHS")
+# BiocManager::install("impute")
+# remotes::install_github("sofiaguglielmini/graphSI")
 library(gaschYHS)
 library(dplyr)
 library(impute)
@@ -284,7 +285,7 @@ ggraph(gene_graph, layout = "fr") +
   guides(edge_alpha = "none", size = "none", color = guide_legend(title = "Gene Group", override.aes = list(size = 3))) +
   theme_void() +
   ggtitle("Gene Co-expression Network") +
-  theme(plot.title = element_text(hjust = 0.5, size = 10, face = "bold.italic"))
+  theme(plot.title = element_text(hjust = 0.5, size = 20, face = "bold.italic"))
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
@@ -459,7 +460,8 @@ control <- grep(
 )
 
 # exclude mutants and wild-type strains
-mutants <- grep("msn", "Msn", "yap", "Yap", "7286", rownames(df))
+patterns <- c("msn", "yap", "7286")
+mutants <- grep(paste(patterns, collapse = "|"), rownames(df), ignore.case = TRUE)
 control <- setdiff(control, mutants)
 stress <- setdiff(1:nrow(df), control)
 stress <- setdiff(stress, mutants)
@@ -468,7 +470,7 @@ df_control <- df[control, ]
 df_stress <- df[stress, ]
 ```
 
-We obtain 30 observations for the control group and 143 observations for
+We obtain 30 observations for the control group and 130 observations for
 the stressed group.
 
 We first compute the correlation matrices for both groups to visualize
@@ -653,18 +655,18 @@ Top 10 Hub Genes in Control
 Top 10 Hub Genes in Stress
 </h4>
 
-|       | Node Strength | Group |
-|:------|--------------:|:------|
-| HSP42 |            36 | C     |
-| SSE2  |            33 | C     |
-| NTH1  |            32 | A     |
-| CTT1  |            32 | B     |
-| PKA3  |            32 | F     |
-| IKS1  |            32 | F     |
-| SRA3  |            31 | F     |
-| PFK26 |            30 | A     |
-| HSP26 |            28 | C     |
-| AUT7  |            27 | D     |
+|        | Node Strength | Group |
+|:-------|--------------:|:------|
+| SSE2   |            37 | C     |
+| IKS1   |            35 | F     |
+| CTT1   |            34 | B     |
+| HSP42  |            33 | C     |
+| PKA3   |            33 | F     |
+| NTH1   |            32 | A     |
+| SRA3   |            32 | F     |
+| PFK26  |            29 | A     |
+| HSP104 |            29 | C     |
+| HSP26  |            28 | C     |
 
 </div>
 
@@ -699,16 +701,16 @@ Least Connected Genes in Stress
 
 |       | Node Strength | Group |
 |:------|--------------:|:------|
-| TRX2  |            14 | B     |
 | CCP1  |            15 | B     |
-| SDS22 |            15 | F     |
-| VAB31 |            16 | D     |
+| TRX2  |            16 | B     |
+| SDS22 |            16 | F     |
 | SOD1  |            17 | B     |
-| MMS2  |            17 | E     |
+| VAB31 |            17 | D     |
+| SSA4  |            18 | C     |
+| TOR1  |            18 | F     |
 | TPS2  |            19 | A     |
-| HYR1  |            19 | B     |
-| SSA4  |            19 | C     |
-| PEP4  |            19 | D     |
+| PRC1  |            19 | D     |
+| MMS2  |            19 | E     |
 
 </div>
 
@@ -772,15 +774,15 @@ Top 10 Changed Genes in Differential Network
 |       | Node Strength | Group |
 |:------|--------------:|:------|
 | GLK1  |            53 | A     |
+| PKA3  |            53 | F     |
 | HSP42 |            52 | C     |
-| PKA3  |            52 | F     |
+| KNS1  |            52 | F     |
 | IKS1  |            51 | F     |
-| KNS1  |            51 | F     |
 | MTL1  |            49 | F     |
 | ATH1  |            48 | A     |
+| CTT1  |            48 | B     |
 | PFK26 |            47 | A     |
-| NTH1  |            46 | A     |
-| CTT1  |            46 | B     |
+| SSE2  |            47 | C     |
 
 </div>
 
@@ -793,16 +795,16 @@ Least Changed Genes in Differential Network
 
 |       | Node Strength | Group |
 |:------|--------------:|:------|
-| SDS22 |            18 | F     |
-| TRX2  |            25 | B     |
-| UBP15 |            26 | D     |
+| SDS22 |            19 | F     |
+| TRX2  |            27 | B     |
+| UBP15 |            27 | D     |
+| TTR1  |            28 | B     |
+| PTK2  |            28 | F     |
 | HXK1  |            29 | A     |
-| TTR1  |            30 | B     |
-| UBI4  |            30 | D     |
-| LAP4  |            30 | D     |
-| MMS2  |            30 | E     |
-| PTK2  |            30 | F     |
-| PGM2  |            33 | A     |
+| LAP4  |            31 | D     |
+| MMS2  |            31 | E     |
+| PGM2  |            32 | A     |
+| UBI4  |            33 | D     |
 
 </div>
 

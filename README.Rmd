@@ -24,9 +24,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, message=FALSE, warning=FALSE}
 # Load necessary libraries
 
-# library(Biobase)
-# BioCManager::install("gaschYHS")
-# BioCManager::install("impute")
+# library(BiocManager)
+# BiocManager::install("gaschYHS")
+# BiocManager::install("impute")
+# remotes::install_github("sofiaguglielmini/graphSI")
 library(gaschYHS)
 library(dplyr)
 library(impute)
@@ -312,7 +313,8 @@ control <- grep(
 )
 
 # exclude mutants and wild-type strains
-mutants <- grep("msn", "Msn", "yap", "Yap", "7286", rownames(df))
+patterns <- c("msn", "yap", "7286")
+mutants <- grep(paste(patterns, collapse = "|"), rownames(df), ignore.case = TRUE)
 control <- setdiff(control, mutants)
 stress <- setdiff(1:nrow(df), control)
 stress <- setdiff(stress, mutants)
